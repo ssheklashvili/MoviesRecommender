@@ -1,12 +1,11 @@
 ﻿@model List<MovieRecommender.Core.Models.Movie>
 
-<div class="card-columns">
+<div class="container">
     @foreach (var item in Model)
     {
         <partial name="_MovieCard" model="item" />
     }
 
 </div>
-
 
 
