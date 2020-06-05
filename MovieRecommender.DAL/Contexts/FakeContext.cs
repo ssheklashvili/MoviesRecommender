@@ -34,7 +34,30 @@ namespace MovieRecommender.Infrastructure.Contexts
             this.Movies = new List<Movie>()
             {
                 new Movie { ID = 1, Title = "Title1", Artists = this.Artists, Director = this.Directors[0], Genres = this.Genres },
-                new Movie { ID = 2, Title = "Title2", Artists = this.Artists, Director = this.Directors[1], Genres = this.Genres }
+                new Movie { ID = 2, Title = "Title2", Artists = this.Artists, Director = this.Directors[1], Genres = this.Genres },
+                new Movie { ID = 3, Title = "Title1", Artists = this.Artists, Director = this.Directors[0], Genres = this.Genres },
+                new Movie { ID = 4, Title = "Title2", Artists = this.Artists, Director = this.Directors[1], Genres = this.Genres },
+                new Movie { ID = 5, Title = "Title1", Artists = this.Artists, Director = this.Directors[0], Genres = this.Genres },
+                new Movie { ID = 6, Title = "Title2", Artists = this.Artists, Director = this.Directors[1], Genres = this.Genres },
+                new Movie { ID = 7, Title = "Title1", Artists = this.Artists, Director = this.Directors[0], Genres = this.Genres },
+                new Movie { ID = 8, Title = "Title2", Artists = this.Artists, Director = this.Directors[1], Genres = this.Genres },
+                new Movie { ID = 9, Title = "Title1", Artists = this.Artists, Director = this.Directors[0], Genres = this.Genres },
+                new Movie { ID = 10, Title = "Title2", Artists = this.Artists, Director = this.Directors[1], Genres = this.Genres },
+                new Movie { ID = 11, Title = "Title1", Artists = this.Artists, Director = this.Directors[0], Genres = this.Genres },
+                new Movie { ID = 12, Title = "Title2", Artists = this.Artists, Director = this.Directors[1], Genres = this.Genres },
+                new Movie { ID = 1, Title = "Title1", Artists = this.Artists, Director = this.Directors[0], Genres = this.Genres },
+                new Movie { ID = 2, Title = "Title2", Artists = this.Artists, Director = this.Directors[1], Genres = this.Genres },
+                new Movie { ID = 3, Title = "Title1", Artists = this.Artists, Director = this.Directors[0], Genres = this.Genres },
+                new Movie { ID = 4, Title = "Title2", Artists = this.Artists, Director = this.Directors[1], Genres = this.Genres },
+                new Movie { ID = 5, Title = "Title1", Artists = this.Artists, Director = this.Directors[0], Genres = this.Genres },
+                new Movie { ID = 6, Title = "Title2", Artists = this.Artists, Director = this.Directors[1], Genres = this.Genres },
+                new Movie { ID = 7, Title = "Title1", Artists = this.Artists, Director = this.Directors[0], Genres = this.Genres },
+                new Movie { ID = 8, Title = "Title2", Artists = this.Artists, Director = this.Directors[1], Genres = this.Genres },
+                new Movie { ID = 9, Title = "Title1", Artists = this.Artists, Director = this.Directors[0], Genres = this.Genres },
+                new Movie { ID = 10, Title = "Title2", Artists = this.Artists, Director = this.Directors[1], Genres = this.Genres },
+                new Movie { ID = 11, Title = "Title1", Artists = this.Artists, Director = this.Directors[0], Genres = this.Genres },
+                new Movie { ID = 12, Title = "Title2", Artists = this.Artists, Director = this.Directors[1], Genres = this.Genres }
+
             };
         }
     }
