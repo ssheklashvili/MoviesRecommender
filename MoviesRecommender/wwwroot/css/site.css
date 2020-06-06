@@ -63,11 +63,13 @@ body {
   margin-bottom: 60px;
 }
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px;
+    background-color: #337ab7;
+    color: #fff !important; 
 }
 
 * {
@@ -83,7 +85,6 @@ body {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    flex-align: center;
     flex-direction: row;
 }
 
@@ -117,6 +118,68 @@ body {
 }
 
 .rating {
+    display: inline-block;
+    position: relative;
+    height: 10px;
+    line-height: 20px;
+    font-size: 20px;
     float: left;
-    margin-left: 5px;
 }
+
+    .rating label {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        cursor: pointer;
+    }
+
+        .rating label:last-child {
+            position: static;
+        }
+
+        .rating label:nth-child(1) {
+            z-index: 5;
+        }
+
+        .rating label:nth-child(2) {
+            z-index: 4;
+        }
+
+        .rating label:nth-child(3) {
+            z-index: 3;
+        }
+
+        .rating label:nth-child(4) {
+            z-index: 2;
+        }
+
+        .rating label:nth-child(5) {
+            z-index: 1;
+        }
+
+        .rating label input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+        }
+
+        .rating label .icon {
+            float: left;
+            color: transparent;
+        }
+
+        .rating label:last-child .icon {
+            color: #000;
+        }
+
+    .rating:not(:hover) label input:checked ~ .icon,
+    .rating:hover label:hover input ~ .icon {
+        color: #09f;
+    }
+
+    .rating label input:focus:not(:checked) ~ .icon:last-child {
+        color: #000;
+        text-shadow: 0 0 5px #09f;
+    }
