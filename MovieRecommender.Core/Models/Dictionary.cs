@@ -8,7 +8,7 @@ namespace MovieRecommender.Core.Models
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public bool IsActor { get; set; }
+        public bool IsArtist { get; set; }
         public bool IsDirector { get; set; }
         public bool IsGenre { get; set; }
 
