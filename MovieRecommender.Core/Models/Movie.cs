@@ -6,12 +6,8 @@ namespace MovieRecommender.Core.Models
     public class Movie
     {
         public int ID { get; set; }
-        public string Title { get; set; }
-        public string Poster { get; set; }
-        public float Rating { get; set; }
+        public int TmdbID { get; set; }
 
-        public ICollection<Genre> Genres { get; set; }
-        public ICollection<Artist> Artists { get; set; }
-        public Director Director { get; set; }
+        public ICollection<UserRate> UserRates { get; set; }
     }
 }

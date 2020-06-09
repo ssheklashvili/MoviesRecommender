@@ -7,6 +7,5 @@ namespace MovieRecommender.Infrastructure.Repositories.Interfaces
 {
     public interface IMovieRepository
     {
-        List<Movie> GetMovies();
     }
 }

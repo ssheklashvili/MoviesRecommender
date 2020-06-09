@@ -10,16 +10,6 @@ namespace MovieRecommender.Infrastructure.Repositories
 {
     public class MovieRepository : IMovieRepository
     {
-        private readonly FakeContext _fakeContext;
-
-        public MovieRepository()
-        {
-            this._fakeContext = new FakeContext();
-        }
-
-        public List<Movie> GetMovies()
-        {
-            return _fakeContext.Movies;
-        }
+       
     }
 }

@@ -22,8 +22,8 @@ namespace MoviesRecommender.Controllers
 
         public IActionResult Index()
         {
-            var movies = _movieRepository.GetMovies();
-            return View(movies);
+            
+            return View();
         }
 
         public IActionResult Privacy()
