@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using MovieRecommender.Core.Services.Interfaces;
 using MovieRecommender.Infrastructure.Repositories.Interfaces;
 using MoviesRecommender.Models;
 
@@ -14,15 +15,18 @@ namespace MoviesRecommender.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IMovieRepository _movieRepository;
-        public HomeController(ILogger<HomeController> logger, IMovieRepository movieRepository)
+        private readonly ITmdbWebService _tmdbWebService;
+        public HomeController(ILogger<HomeController> logger, IMovieRepository movieRepository, ITmdbWebService tmdbWebService)
         {
             _logger = logger;
             _movieRepository = movieRepository;
+            _tmdbWebService = tmdbWebService;
         }
 
         public IActionResult Index()
         {
-            
+            //var movies = _tmdbWebService.GetPopularMovies();
+            var search = _tmdbWebService.SearchMovie("Gladiator");
             return View();
         }
 

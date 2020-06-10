@@ -9,6 +9,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MovieRecommender.Core.Services;
+using MovieRecommender.Core.Services.Interfaces;
 using MovieRecommender.Infrastructure.Contexts;
 using MovieRecommender.Infrastructure.Repositories;
 using MovieRecommender.Infrastructure.Repositories.Interfaces;
@@ -30,6 +32,7 @@ namespace MoviesRecommender
             services.AddDbContextPool<MoviesRecommenderContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IMovieRepository, MovieRepository>();
+            services.AddScoped<ITmdbWebService, TmdbWebService>();
             services.AddControllersWithViews();
         }
 
