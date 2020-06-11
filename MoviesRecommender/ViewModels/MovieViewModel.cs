@@ -7,5 +7,6 @@ namespace MoviesRecommender.WEB.ViewModels
 {
     public class MovieViewModel
     {
+
     }
 }

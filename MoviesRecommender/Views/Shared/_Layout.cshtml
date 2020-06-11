@@ -4,26 +4,21 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - MoviesRecommender</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link href="~/mdb/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/mdb/css/mdb.min.css" rel="stylesheet">
+    <link href="~/mdb/css/style.css" rel="stylesheet">
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a class="navbar-brand ml-lg-5" href="#">MovieRecommender</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <form class="form-inline float-left">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
-                </form>
-            </div>
+        <nav class="navbar navbar-dark primary-color fixed-top scrolling-navbar">
+            <form class="form-inline">
+                <a class="navbar-brand ml-lg-5" href="#" style="font-family:Helvetica;">MovieRecommender</a>
+                <div class="md-form my-0 ml-5">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                </div>
+                <button class="btn btn-outline-white btn-md my-2 my-sm-0 ml-3" type="submit">Search</button>
+            </form>
         </nav>
     </header>
     <div class="container">
@@ -32,14 +27,22 @@
         </main>
     </div>
 
-    <footer class="footer">
-        <div class="container">
-            <span > &copy; 2020 - MoviesRecommender</span>
+    <!-- Footer -->
+    <footer class="page-footer font-small blue pt-4 fixed-bottom">
+
+        <div class="footer-copyright text-center py-3">
+            © 2020 Copyright:
+            <a href="#"> MovieRecommender</a>
         </div>
+
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Footer -->
+
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script type="text/javascript" src="~/mdb/js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="~/mdb/js/popper.min.js"></script>
+    <script type="text/javascript" src="~/mdb/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/mdb/js/mdb.min.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>
