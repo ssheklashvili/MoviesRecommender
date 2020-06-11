@@ -9,6 +9,6 @@ namespace MovieRecommender.Core.Services.Interfaces
     public interface ITmdbWebService
     {
         Task<List<MovieApiModel>> GetPopularMovies();
-        Task<string> SearchMovie(string name);
+        Task<List<MovieApiModel>> SearchMovie(string name);
     }
 }

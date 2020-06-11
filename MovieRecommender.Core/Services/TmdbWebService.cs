@@ -57,7 +57,7 @@ namespace MovieRecommender.Core.Services
             }
         }
 
-        public async Task<string> SearchMovie(string name)
+        public async Task<List<MovieApiModel>> SearchMovie(string name)
         {
             try
             {
@@ -70,8 +70,8 @@ namespace MovieRecommender.Core.Services
                     response.EnsureSuccessStatusCode();
 
                     var result = await response.Content.ReadAsStringAsync();
-                    var movies = JObject.Parse(result)["results"].ToObject<ObservableCollection<MovieApiModel>>();
-                    return result;
+                    var movies = JObject.Parse(result)["results"].ToObject<ObservableCollection<MovieApiModel>>().ToList();
+                    return movies;
                 }
 
             }

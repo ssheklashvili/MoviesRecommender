@@ -38,6 +38,14 @@ namespace MoviesRecommender.Controllers
             return View(movies);
         }
 
+        public async Task<IActionResult> SearchMovie(string name)
+        {
+            var apiMovies = await _tmdbWebService.SearchMovie(name);
+            var movies = _mapper.Map<IEnumerable<MovieViewModel>>(apiMovies).ToList();
+
+            return PartialView("_MovieCard", movies);
+        }
+
         public IActionResult Privacy()
         {
             return View();
