@@ -33,9 +33,9 @@ namespace MoviesRecommender.Controllers
         public async Task<IActionResult> Index()
         {
             var apiMovies = await _tmdbWebService.GetPopularMovies();
-            //var movies =  _mapper.Map<MovieViewModel>(apiMovies);
+            var movies =  _mapper.Map<IEnumerable<MovieViewModel>>(apiMovies);
 
-            return View(apiMovies);
+            return View(movies);
         }
 
         public IActionResult Privacy()
