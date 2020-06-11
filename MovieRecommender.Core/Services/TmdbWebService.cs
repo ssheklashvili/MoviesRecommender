@@ -33,7 +33,7 @@ namespace MovieRecommender.Core.Services
             client.DefaultRequestHeaders.Add("Accept", "text/plain;charset=UTF-8");
         }
 
-        public async Task<string> GetPopularMovies()
+        public async Task<List<MovieApiModel>> GetPopularMovies()
         {
             try
             {
@@ -46,8 +46,8 @@ namespace MovieRecommender.Core.Services
                     response.EnsureSuccessStatusCode();
 
                     var result = await response.Content.ReadAsStringAsync();
-                    var movies = JObject.Parse(result)["results"].ToObject<ObservableCollection<MovieApiModel>>();
-                    return result;
+                    var movies = JObject.Parse(result)["results"].ToObject<ObservableCollection<MovieApiModel>>().ToList();
+                    return movies;
                 }
 
             }

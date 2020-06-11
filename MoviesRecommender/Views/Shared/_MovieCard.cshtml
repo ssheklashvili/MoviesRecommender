@@ -1,40 +1,61 @@
-﻿@*@model MovieRecommender.Core.Models.Movie
+﻿@model MovieRecommender.Core.Models.ApiModels.MovieApiModel
 
-    <div class="box">
-        <div class="poster">
-            <img class="card-img-top img-fluid" src="@Model.Poster" alt="Card image cap" />
+@{
+    var imagePath = "http://image.tmdb.org/t/p/w185/" + Model.PosterPath;
+}
+
+    <div class="col mb-4">
+        <!-- Card -->
+        <div class="card">
+
+            <!--Card image-->
+            <div class="view overlay">
+                <img class="card-img-top" src="@imagePath"
+                     alt="Card image cap">
+                <a href="#!">
+                    <div class="mask rgba-white-slight"></div>
+                </a>
+            </div>
+
+            <!--Card content-->
+            <div class="card-body">
+                <!--Title-->
+                <h4 class="card-title">@Model.TiTle</h4>
+                <form class="rating">
+                    <label>
+                        <input type="radio" name="stars" value="1" />
+                        <span class="icon">★</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="stars" value="2" />
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="stars" value="3" />
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="stars" value="4" />
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="stars" value="5" />
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                    </label>
+                </form>
+
+            </div>
+
         </div>
-         <div class="box-sub">@Model.Title </div>
-         <form class="rating">
-             <label>
-                 <input type="radio" name="stars" value="1" />
-                 <span class="icon">★</span>
-             </label>
-             <label>
-                 <input type="radio" name="stars" value="2" />
-                 <span class="icon">★</span>
-                 <span class="icon">★</span>
-             </label>
-             <label>
-                 <input type="radio" name="stars" value="3" />
-                 <span class="icon">★</span>
-                 <span class="icon">★</span>
-                 <span class="icon">★</span>
-             </label>
-             <label>
-                 <input type="radio" name="stars" value="4" />
-                 <span class="icon">★</span>
-                 <span class="icon">★</span>
-                 <span class="icon">★</span>
-                 <span class="icon">★</span>
-             </label>
-             <label>
-                 <input type="radio" name="stars" value="5" />
-                 <span class="icon">★</span>
-                 <span class="icon">★</span>
-                 <span class="icon">★</span>
-                 <span class="icon">★</span>
-                 <span class="icon">★</span>
-             </label>
-         </form>
-    </div>*@
+        <!-- Card -->
+    </div>
