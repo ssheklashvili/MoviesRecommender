@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -11,11 +12,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MovieRecommender.Core.Configuration.AutoMapper;
+using MovieRecommender.Core.Interfaces.Repositories;
+using MovieRecommender.Core.Interfaces.Services;
 using MovieRecommender.Core.Services;
-using MovieRecommender.Core.Services.Interfaces;
 using MovieRecommender.Infrastructure.Contexts;
 using MovieRecommender.Infrastructure.Repositories;
-using MovieRecommender.Infrastructure.Repositories.Interfaces;
 
 namespace MoviesRecommender
 {
@@ -35,8 +36,16 @@ namespace MoviesRecommender
             services.AddDbContextPool<MoviesRecommenderContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IMovieRepository, MovieRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserService, UserService>();
             services.AddScoped<ITmdbWebService, TmdbWebService>();
             services.AddControllersWithViews();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.LoginPath = "/Account/LogIn/";
+                    options.Cookie.Name = "Identity";
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,6 +66,7 @@ namespace MoviesRecommender
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

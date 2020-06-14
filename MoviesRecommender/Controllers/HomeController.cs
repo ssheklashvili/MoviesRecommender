@@ -4,15 +4,17 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using MovieRecommender.Core.Interfaces.Repositories;
+using MovieRecommender.Core.Interfaces.Services;
 using MovieRecommender.Core.Models.ViewModels;
-using MovieRecommender.Core.Services.Interfaces;
-using MovieRecommender.Infrastructure.Repositories.Interfaces;
 using MoviesRecommender.Models;
 
 namespace MoviesRecommender.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -44,11 +46,6 @@ namespace MoviesRecommender.Controllers
             var movies = _mapper.Map<IEnumerable<MovieViewModel>>(apiMovies).ToList();
 
             return PartialView("_MovieCard", movies);
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

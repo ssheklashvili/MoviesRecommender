@@ -18,3 +18,5 @@ function searchMovie() {
         }
     });
 }
+
+$('select').selectpicker();

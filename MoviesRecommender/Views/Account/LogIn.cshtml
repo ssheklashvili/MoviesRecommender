@@ -1,0 +1,43 @@
+﻿    @model MoviesRecommender.WEB.ViewModels.LoginViewModel
+    <!-- Material form login -->
+    <div class="container">
+        <div class="card mt-5">
+
+            <h5 class="card-header info-color white-text text-center py-4">
+                <strong>Sign in</strong>
+            </h5>
+
+            <!--Card content-->
+            <div class="card-body px-lg-5 pt-0">
+
+                <!-- Form -->
+                <form class="text-center" style="color: #757575;" asp-action="LogIn" method="post">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <!-- Email -->
+                    <div class="md-form">
+                        <input asp-for="Email" id="Email" name="Email" class="form-control" required>
+                        <label for="materialLoginFormEmail">E-mail</label>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="md-form">
+                        <input asp-for="Password" type="password" id="Password" name="Password" class="form-control" required>
+                        <label for="materialLoginFormPassword">Password</label>
+                    </div>
+
+                    <!-- Sign in button -->
+                    <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Sign in</button>
+
+                    <!-- Register -->
+                    <p>
+                        Not a member?
+                        <a href="">Register</a>
+                    </p>
+                </form>
+                <!-- Form -->
+
+            </div>
+
+        </div>
+    </div>
+

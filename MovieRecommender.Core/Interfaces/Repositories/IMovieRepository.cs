@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MovieRecommender.Infrastructure.Repositories.Interfaces
+namespace MovieRecommender.Core.Interfaces.Repositories
 {
     public interface IMovieRepository
     {

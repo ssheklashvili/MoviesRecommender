@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
+using MovieRecommender.Core.Interfaces.Services;
 using MovieRecommender.Core.Models.ApiModels;
-using MovieRecommender.Core.Services.Interfaces;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;

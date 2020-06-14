@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MovieRecommender.Core.Services.Interfaces
+namespace MovieRecommender.Core.Interfaces.Services
 {
     public interface ITmdbWebService
     {
