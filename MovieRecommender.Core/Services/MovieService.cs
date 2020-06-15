@@ -1,4 +1,5 @@
 ﻿using ExcelDataReader;
+using MovieRecommender.Core.Interfaces.Repositories;
 using MovieRecommender.Core.Interfaces.Services;
 using MovieRecommender.Core.Models;
 using System;
@@ -10,6 +11,20 @@ namespace MovieRecommender.Core.Services
 {
     public class MovieService : IMoviesService
     {
-        
+        private readonly IMovieRepository _movieRepository;
+
+        public MovieService(IMovieRepository movieRepository)
+        {
+            _movieRepository = movieRepository;
+        }
+        public List<Movie> GetRandomMovies()
+        {
+            return _movieRepository.GetRandomMovies();
+        }
+
+        public List<Movie> GetMoviesByName(string name)
+        {
+            return _movieRepository.GetMoviesByName(name);
+        }
     }
 }

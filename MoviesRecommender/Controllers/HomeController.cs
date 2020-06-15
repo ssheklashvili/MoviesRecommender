@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MovieRecommender.Core.Interfaces.Repositories;
 using MovieRecommender.Core.Interfaces.Services;
+using MovieRecommender.Core.Models.ApiModels;
 using MovieRecommender.Core.Models.AppModels;
 using MovieRecommender.Core.Services;
 using MovieRecommender.Infrastructure.Repositories;
@@ -36,18 +37,37 @@ namespace MoviesRecommender.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var apiMovies = await _tmdbWebService.GetPopularMovies();
-            var movies = _mapper.Map<IEnumerable<MovieViewModel>>(apiMovies);
+            var movies = new List<MovieApiModel>();
+            var moviesFromDb = _moviesService.GetRandomMovies();
 
-            return View(movies);
+            foreach(var movie in moviesFromDb)
+            {
+                var apiMovie = await _tmdbWebService.SearchMovieById(movie.TmdbID);
+                movies.Add(apiMovie);
+            }
+            
+            var moviesVm = _mapper.Map<IEnumerable<MovieViewModel>>(movies);
+
+            return View(moviesVm);
         }
 
         public async Task<IActionResult> SearchMovie(string name)
         {
-            var apiMovies = await _tmdbWebService.SearchMovie(name);
-            var movies = _mapper.Map<IEnumerable<MovieViewModel>>(apiMovies).ToList();
+            var moviesFromDb = _moviesService.GetMoviesByName(name).Take(20).ToList();
+            var movies = new List<MovieApiModel>();
 
-            return PartialView("_MovieCard", movies);
+            foreach (var movie in moviesFromDb)
+            {
+                var apiMovie = await _tmdbWebService.SearchMovieById(movie.TmdbID);
+                if(apiMovie != null)
+                    movies.Add(apiMovie);
+
+            }
+
+            
+            var moviesVm = _mapper.Map<IEnumerable<MovieViewModel>>(movies).ToList();
+
+            return PartialView("_MovieCard", moviesVm);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

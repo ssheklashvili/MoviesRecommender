@@ -8,5 +8,7 @@ namespace MovieRecommender.Core.Interfaces.Repositories
     public interface IMovieRepository
     {
         void ImportMovies();
+        List<Movie> GetRandomMovies();
+        List<Movie> GetMoviesByName(string name);
     }
 }

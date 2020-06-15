@@ -6,6 +6,7 @@ using MovieRecommender.Infrastructure.Contexts;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading;
 
@@ -60,6 +61,19 @@ namespace MovieRecommender.Infrastructure.Repositories
 
                 transaction.Commit();
             }
+        }
+
+        public List<Movie> GetRandomMovies()
+        {
+            Random r = new Random();
+            int rInt = r.Next(0, 9000);
+            var movies = _context.Movies.Skip(rInt).Take(20).ToList();
+            return movies;
+        }
+
+        public List<Movie> GetMoviesByName(string name)
+        {
+            return _context.Movies.Where(i => i.Name.ToLower().Contains(name.ToLower())).ToList();
         }
     }
 }

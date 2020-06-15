@@ -10,5 +10,6 @@ namespace MovieRecommender.Core.Interfaces.Services
     {
         Task<List<MovieApiModel>> GetPopularMovies();
         Task<List<MovieApiModel>> SearchMovie(string name);
+        Task<MovieApiModel> SearchMovieById(int id);
     }
 }

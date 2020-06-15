@@ -80,5 +80,29 @@ namespace MovieRecommender.Core.Services
                 return null;
             }
         }
+
+        public async Task<MovieApiModel> SearchMovieById(int id)
+        {
+            try
+            {
+                var queryParams = new Dictionary<string, string> { { "api_key", apiKey } };
+                var queryString = string.Join("&", queryParams.Where(p => !string.IsNullOrEmpty(p.Value)).Select(p => $"{p.Key}={p.Value}"));
+
+                using (var requestMessage = new HttpRequestMessage(HttpMethod.Get, $"movie/{id}?{queryString}"))
+                {
+                    var response = await client.SendAsync(requestMessage);
+                    response.EnsureSuccessStatusCode();
+
+                    var result = await response.Content.ReadAsStringAsync();
+                    var movie = JObject.Parse(result).ToObject<MovieApiModel>();
+                    return movie;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
     }
 }
