@@ -1,13 +1,13 @@
 ﻿@model List<MovieRecommender.Core.Models.AppModels.MovieViewModel>
 
-    <div id="movieContainer" class="container mt-5">
+    <div id="movieContainer" class="container">
         <div class="row row-cols-1 row-cols-md-5 mt-5 mb-5">
             @foreach (var item in Model)
             {
                 var imagePath = "http://image.tmdb.org/t/p/w185/" + item.PosterPath;
-                <div class="col mb-4">
+                <div class="col mb-4" >
                     <!-- Card -->
-                    <div class="card h-100">
+                    <div class="card h-100 m-lg-5" style="width: 200px;" >
 
                         <!--Card image-->
                         <div class="view overlay">

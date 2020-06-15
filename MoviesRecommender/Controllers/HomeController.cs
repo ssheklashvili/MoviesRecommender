@@ -43,7 +43,8 @@ namespace MoviesRecommender.Controllers
             foreach(var movie in moviesFromDb)
             {
                 var apiMovie = await _tmdbWebService.SearchMovieById(movie.TmdbID);
-                movies.Add(apiMovie);
+                if (apiMovie != null)
+                    movies.Add(apiMovie);
             }
             
             var moviesVm = _mapper.Map<IEnumerable<MovieViewModel>>(movies);

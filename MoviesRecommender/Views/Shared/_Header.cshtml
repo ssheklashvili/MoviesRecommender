@@ -1,37 +1,25 @@
-﻿<header>
-    <nav class="navbar navbar-dark primary-color fixed-top scrolling-navbar">
-        <form class="form-inline">
-            <a class="navbar-brand ml-lg-5" href="#" style="font-family:Helvetica;">MovieRecommender</a>
-            <div class="md-form my-0 ml-5">
-                <input id="search" class="form-control mr-sm-2" type="text"
-                       placeholder="Search" aria-label="Search" autocomplete="off">
-            </div>
-            <a class="btn btn-outline-white btn-md my-2 my-sm-0 ml-3" onclick="searchMovie()">Search</a>
+﻿<!--Navbar -->
+    <nav class="mb-1 navbar navbar-expand-lg navbar-dark info-color">
 
-            <ul class="navbar-nav ml-auto nav-flex-icons">
-                <li class="nav-item">
-                    <a class="nav-link waves-effect waves-light">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link waves-effect waves-light">
-                        <i class="fab fa-google-plus-g"></i>
-                    </a>
-                </li>
+        <a class="navbar-brand ml-lg-5" href="#" style="font-family:Helvetica;">MovieRecommender</a>
+        <form class="form-inline active-cyan-4 ml-5" > 
+            <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search" id="search"
+                   aria-label="Search">
+            <a class="my-2 my-sm-0 ml-3"  onclick="searchMovie()"> <i class="fas fa-search" aria-hidden="true"></i></a>
+        </form>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
+            <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-user"></i>
+                        <i class="fas fa-user"></i> Profile
                     </a>
-                    <div class="dropdown-menu dropdown-menu-right dropdown-default"
-                         aria-labelledby="navbarDropdownMenuLink-333">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
+                        <a class="dropdown-item" href="#">My account</a>
+                        <a class="dropdown-item" asp-controller="Account" asp-action="LogOut">Log out</a>
                     </div>
                 </li>
             </ul>
-        </form>
+        </div>
     </nav>
-</header>
