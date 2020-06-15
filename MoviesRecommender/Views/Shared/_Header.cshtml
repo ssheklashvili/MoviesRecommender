@@ -1,4 +1,8 @@
-﻿<!--Navbar -->
+﻿@using System.Security.Claims;
+@{ 
+    var claimsIdentity = User.Identity as ClaimsIdentity;
+}
+<!--Navbar -->
     <nav class="mb-1 navbar navbar-expand-lg navbar-dark info-color">
 
         <a class="navbar-brand ml-lg-5" href="#" style="font-family:Helvetica;">MovieRecommender</a>
@@ -13,7 +17,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-user"></i> Profile
+                        <i class="fas fa-user"></i> @claimsIdentity.Name
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
                         <a class="dropdown-item" href="#">My account</a>
