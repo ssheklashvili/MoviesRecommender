@@ -1,5 +1,5 @@
 ﻿using MovieRecommender.Core.Models;
-using MovieRecommender.Core.Models.ViewModels;
+using MovieRecommender.Core.Models.AppModels;
 using System;
 using System.Collections.Generic;
 using System.Text;

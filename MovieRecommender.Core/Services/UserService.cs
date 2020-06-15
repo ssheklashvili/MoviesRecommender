@@ -1,7 +1,7 @@
 ﻿using MovieRecommender.Core.Interfaces.Repositories;
 using MovieRecommender.Core.Interfaces.Services;
 using MovieRecommender.Core.Models;
-using MovieRecommender.Core.Models.ViewModels;
+using MovieRecommender.Core.Models.AppModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

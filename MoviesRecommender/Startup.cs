@@ -36,6 +36,7 @@ namespace MoviesRecommender
             services.AddDbContextPool<MoviesRecommenderContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IMovieRepository, MovieRepository>();
+            services.AddScoped<IMoviesService, MovieService>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ITmdbWebService, TmdbWebService>();

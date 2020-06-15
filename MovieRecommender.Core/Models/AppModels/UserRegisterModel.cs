@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MovieRecommender.Core.Models.ViewModels
+namespace MovieRecommender.Core.Models.AppModels
 {
     public class UserRegisterModel
     {

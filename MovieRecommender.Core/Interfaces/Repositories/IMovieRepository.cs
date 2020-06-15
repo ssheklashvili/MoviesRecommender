@@ -7,5 +7,6 @@ namespace MovieRecommender.Core.Interfaces.Repositories
 {
     public interface IMovieRepository
     {
+        void ImportMovies();
     }
 }

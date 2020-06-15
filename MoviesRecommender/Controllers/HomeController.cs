@@ -9,7 +9,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MovieRecommender.Core.Interfaces.Repositories;
 using MovieRecommender.Core.Interfaces.Services;
-using MovieRecommender.Core.Models.ViewModels;
+using MovieRecommender.Core.Models.AppModels;
+using MovieRecommender.Core.Services;
+using MovieRecommender.Infrastructure.Repositories;
 using MoviesRecommender.Models;
 
 namespace MoviesRecommender.Controllers
@@ -18,16 +20,16 @@ namespace MoviesRecommender.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IMovieRepository _movieRepository;
+        private readonly IMoviesService _moviesService;
         private readonly ITmdbWebService _tmdbWebService;
         private readonly IMapper _mapper;
         public HomeController(ILogger<HomeController> logger, 
-            IMovieRepository movieRepository,
+            IMoviesService moviesService,
             ITmdbWebService tmdbWebService,
             IMapper mapper)
         {
             _logger = logger;
-            _movieRepository = movieRepository;
+            _moviesService = moviesService;
             _tmdbWebService = tmdbWebService;
             _mapper = mapper;
         }
@@ -35,7 +37,7 @@ namespace MoviesRecommender.Controllers
         public async Task<IActionResult> Index()
         {
             var apiMovies = await _tmdbWebService.GetPopularMovies();
-            var movies =  _mapper.Map<IEnumerable<MovieViewModel>>(apiMovies);
+            var movies = _mapper.Map<IEnumerable<MovieViewModel>>(apiMovies);
 
             return View(movies);
         }

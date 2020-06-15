@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MovieRecommender.Core.Interfaces.Services;
 using MovieRecommender.Core.Models;
-using MovieRecommender.Core.Models.ViewModels;
+using MovieRecommender.Core.Models.AppModels;
 using MoviesRecommender.WEB.ViewModels;
 
 namespace MoviesRecommender.WEB.Controllers

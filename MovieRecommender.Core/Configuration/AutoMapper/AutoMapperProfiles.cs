@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using MovieRecommender.Core.Models.ApiModels;
-using MovieRecommender.Core.Models.ViewModels;
+using MovieRecommender.Core.Models.AppModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
