@@ -1,4 +1,5 @@
 ﻿using MovieRecommender.Core.Models;
+using MovieRecommender.Core.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,5 +10,6 @@ namespace MovieRecommender.Core.Interfaces.Services
     {
         List<Dictionary> GetDictionaries();
         User GetUser(string email, string password);
+        void RegisterUser(UserRegisterModel model);
     }
 }

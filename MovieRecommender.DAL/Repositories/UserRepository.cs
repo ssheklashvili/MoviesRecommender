@@ -4,6 +4,7 @@ using MovieRecommender.Infrastructure.Contexts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace MovieRecommender.Infrastructure.Repositories
@@ -21,10 +22,30 @@ namespace MovieRecommender.Infrastructure.Repositories
             return _context.Dictionaries.ToList();
         }
 
-        public User GetUser(string email, string password)
+        public User GetUser(string email)
         {
-            var user = _context.Users.Where(u => u.Email == email && u.Password == password).SingleOrDefault();
+            var user = _context.Users.Where(u => u.Email == email).SingleOrDefault();
             return user;
+        }
+        public User SaveUser(string firsName, string lastName, string email, string password)
+        {
+            var user = new User
+            {
+                FirstName = firsName,
+                LastName = lastName,
+                Email = email,
+                Password = password
+            };
+
+            var userDbModel =_context.Users.Add(user);
+            _context.SaveChanges();
+            return userDbModel.Entity;
+        }
+
+        public void SaveUserFavourites<T>(ICollection<T> entities) where T : class
+        {
+            _context.Set<T>().AddRange(entities);
+            _context.SaveChanges();
         }
     }
 }

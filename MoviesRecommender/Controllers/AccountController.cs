@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MovieRecommender.Core.Interfaces.Services;
 using MovieRecommender.Core.Models;
+using MovieRecommender.Core.Models.ViewModels;
 using MoviesRecommender.WEB.ViewModels;
 
 namespace MoviesRecommender.WEB.Controllers
@@ -79,8 +80,39 @@ namespace MoviesRecommender.WEB.Controllers
 
         public IActionResult Register()
         {
-            var dictionaries = _userService.GetDictionaries();
+            var registerViewModel = GetRegisterViewModel();
 
+            return View(registerViewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var userRegisterModel = new UserRegisterModel
+                {
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    Email = model.Email,
+                    Password = model.Password,
+                    ArtistIds = model.ArtistIds,
+                    DirectorIds = model.DirectorIds,
+                    GenreIds = model.GenreIds
+                };
+
+                _userService.RegisterUser(userRegisterModel);
+
+                return RedirectToAction("LogIn");
+            }
+            var registerViewModel = GetRegisterViewModel();
+
+            return View(registerViewModel);
+        }
+
+        private RegisterViewModel GetRegisterViewModel()
+        {
+            var dictionaries = _userService.GetDictionaries();
             var registerViewModel = new RegisterViewModel
             {
                 Genres = dictionaries.Where(i => i.IsGenre).Select(i =>
@@ -103,7 +135,8 @@ namespace MoviesRecommender.WEB.Controllers
                 })
             };
 
-            return View(registerViewModel);
+
+            return registerViewModel;
         }
     }
 }
