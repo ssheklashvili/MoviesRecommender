@@ -5,11 +5,11 @@
 <!--Navbar -->
     <nav class="mb-1 navbar navbar-expand-lg navbar-dark info-color">
 
-        <a class="navbar-brand ml-lg-5" href="#" style="font-family:Helvetica;">MovieRecommender</a>
-        <form class="form-inline active-cyan-4 ml-5" > 
+        <a class="navbar-brand ml-lg-5" asp-controller="Home" asp-action="Index" style="font-family:Helvetica;">MovieRecommender</a>
+        <form class="form-inline active-cyan-5 ml-5 w-25" > 
             <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search" id="search"
                    aria-label="Search">
-            <a class="my-2 my-sm-0 ml-3"  onclick="searchMovie()"> <i class="fas fa-search" aria-hidden="true"></i></a>
+            <a class="my-2 my-sm-0" onclick="searchMovie()" style="color: #fff;"> <i class="fas fa-search" aria-hidden="true"></i></a>
         </form>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
