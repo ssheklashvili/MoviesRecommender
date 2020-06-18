@@ -11,5 +11,7 @@ namespace MovieRecommender.Core.Interfaces.Repositories
         User GetUser(string email);
         User SaveUser(string firsName, string lastName, string email, string password);
         void SaveUserFavourites<T>(ICollection<T> entities) where T : class;
+
+        User GetUserProfile(int userId);
     }
 }

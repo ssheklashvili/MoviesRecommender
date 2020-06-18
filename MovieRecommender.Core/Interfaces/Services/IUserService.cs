@@ -11,5 +11,7 @@ namespace MovieRecommender.Core.Interfaces.Services
         List<Dictionary> GetDictionaries();
         User GetUser(string email, string password);
         void RegisterUser(UserRegisterModel model);
+        ProfileViewModel GetUserProfile(int userId);
+        bool UserExists(string email);
     }
 }

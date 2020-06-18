@@ -1,4 +1,5 @@
-﻿using MovieRecommender.Core.Interfaces.Repositories;
+﻿using Microsoft.EntityFrameworkCore;
+using MovieRecommender.Core.Interfaces.Repositories;
 using MovieRecommender.Core.Models;
 using MovieRecommender.Infrastructure.Contexts;
 using System;
@@ -46,6 +47,17 @@ namespace MovieRecommender.Infrastructure.Repositories
         {
             _context.Set<T>().AddRange(entities);
             _context.SaveChanges();
+        }
+
+        public User GetUserProfile(int userId)
+        {
+            var user = _context.Users
+                .Include(i => i.UserArtists).ThenInclude(i => i.Artist)
+                .Include(i => i.UserDirectors).ThenInclude(i => i.Director)
+                .Include(i => i.UserGenres).ThenInclude(i => i.Genre)
+                .Single(i => i.ID == userId);
+
+            return user;
         }
     }
 }

@@ -71,6 +71,25 @@ namespace MoviesRecommender.Controllers
             return PartialView("_MovieCard", moviesVm);
         }
 
+
+        public async Task<IActionResult> GetRecommendation(int userId)
+        {
+            var movies = new List<MovieApiModel>();
+            var moviesFromDb = _moviesService.GetRandomMovies().Take(10).ToList();
+
+            foreach (var movie in moviesFromDb)
+            {
+                var apiMovie = await _tmdbWebService.SearchMovieById(movie.TmdbID);
+                if (apiMovie != null)
+                    movies.Add(apiMovie);
+            }
+
+            var moviesVm = _mapper.Map<IEnumerable<MovieViewModel>>(movies);
+
+            return PartialView("_MovieCard", moviesVm);
+        }
+
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

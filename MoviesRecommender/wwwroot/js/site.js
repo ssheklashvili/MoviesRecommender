@@ -13,10 +13,22 @@ function searchMovie() {
     if (searchValue.length < 3)
         return;
     $.ajax({
-        url: "Home/SearchMovie",
+        url: "/Home/SearchMovie",
         method: "GET",
         contentType: "application/json",
         data: { name: searchValue },
+        success: function (response) {
+            $("#pageWrapper").html(response);
+        }
+    });
+};
+
+function getRecommendation(userId) {
+    $.ajax({
+        url: "/Home/GetRecommendation",
+        method: "GET",
+        contentType: "application/json",
+        data: { userId: userId },
         success: function (response) {
             $("#pageWrapper").html(response);
         }

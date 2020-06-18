@@ -31,7 +31,7 @@ namespace MoviesRecommender.WEB.Controllers
             }
             return View();
         }
-        [HttpPost]
+        [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> LogIn(LoginViewModel model)
         {
             if (!ModelState.IsValid)
@@ -47,7 +47,8 @@ namespace MoviesRecommender.WEB.Controllers
             {
                 var claims = new List<Claim>
                     {
-                        new Claim(ClaimTypes.Name, user.FirstName)
+                        new Claim(ClaimTypes.Name, user.FirstName),
+                        new Claim(ClaimTypes.NameIdentifier, user.ID.ToString())
                     };
                 DateTimeOffset? expiresUtc = null;
                 bool isPersistent = false;
@@ -85,9 +86,15 @@ namespace MoviesRecommender.WEB.Controllers
             return View(registerViewModel);
         }
 
-        [HttpPost]
+        [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
+            if (!string.IsNullOrWhiteSpace(model.Email))
+            {
+                if (_userService.UserExists(model.Email))
+                    ModelState.AddModelError(string.Empty, "User already exists!");
+            }
+
             if (ModelState.IsValid)
             {
                 var userRegisterModel = new UserRegisterModel
@@ -138,5 +145,13 @@ namespace MoviesRecommender.WEB.Controllers
 
             return registerViewModel;
         }
+
+
+        public IActionResult Profile(int id)
+        {
+            var user = _userService.GetUserProfile(id);
+            return View(user);
+        }
+
     }
 }

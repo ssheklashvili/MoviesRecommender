@@ -25,6 +25,13 @@ namespace MovieRecommender.Core.Services
             return dictionaries;
         }
 
+        public bool UserExists(string email)
+        {
+            var user = _userRepository.GetUser(email);
+            if (user == null) return false;
+            return true;
+        }
+
         public User GetUser(string email, string password)
         {
             var user = _userRepository.GetUser(email);
@@ -41,6 +48,39 @@ namespace MovieRecommender.Core.Services
                 if (hashBytes[i + 16] != hash[i])
                     return null;
             return user;
+        }
+
+        public ProfileViewModel GetUserProfile(int userId)
+        {
+            var user = _userRepository.GetUserProfile(userId);
+
+            string artists = string.Empty;
+            string genres = string.Empty;
+            string directors = string.Empty;
+
+            foreach(var artist in user.UserArtists)
+            {
+                artists += artist.Artist.Name + ", ";
+            }
+            foreach(var genre in user.UserGenres)
+            {
+                genres += genre.Genre.Name + ", ";
+            }
+            foreach(var director in user.UserDirectors)
+            {
+                directors += director.Director.Name + ", ";
+            }
+            var profileVM = new ProfileViewModel
+            {
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email,
+                Artists = artists.Remove(artists.Length - 2),
+                Genres = genres.Remove(genres.Length - 2),
+                Directors = directors.Remove(directors.Length - 2)
+            };
+
+            return profileVM;
         }
 
         private string HashPassword(string password)
@@ -67,13 +107,13 @@ namespace MovieRecommender.Core.Services
                 GenreId = i
             }).ToList();
 
-            var userArtists = model.GenreIds.Select(i => new UserArtist
+            var userArtists = model.ArtistIds.Select(i => new UserArtist
             {
                 UserId = user.ID,
                 ArtistId = i
             }).ToList();
 
-            var userDirectors = model.GenreIds.Select(i => new UserDirector
+            var userDirectors = model.DirectorIds.Select(i => new UserDirector
             {
                 UserId = user.ID,
                 DirectorId = i
