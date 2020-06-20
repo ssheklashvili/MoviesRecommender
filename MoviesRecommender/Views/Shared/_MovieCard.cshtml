@@ -5,7 +5,7 @@
             @foreach (var item in Model)
             {
                 var imagePath = "http://image.tmdb.org/t/p/w185/" + item.PosterPath;
-                <div class="col  mb-4"  style="height: 400px;">
+                <div class="col  mb-4"  style="height: 450px;">
                     <!-- Card -->
                     <div class="card h-100 m-lg-5" style="width: 200px;" >
 
@@ -55,6 +55,11 @@
                                         <span class="icon">★</span>
                                     </label>
                                 </form>
+                                @if (item.Rate != null)
+                                {
+                                    <span>@item.Rate</span>
+                                }
+
                             </div>
 
                         </div>

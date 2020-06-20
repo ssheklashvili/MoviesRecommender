@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
@@ -48,6 +49,12 @@ namespace MoviesRecommender.Controllers
             }
             
             var moviesVm = _mapper.Map<IEnumerable<MovieViewModel>>(movies);
+            foreach (var item in moviesVm)
+            {
+                var movie = moviesFromDb.FirstOrDefault(i => i.TmdbID == item.TmdbID);
+                item.ID = movie.ID;
+                item.Rate = movie.UserRates?.FirstOrDefault(i => i.UserId == int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))?.Rate;
+            }
 
             return View(moviesVm);
         }
@@ -67,6 +74,13 @@ namespace MoviesRecommender.Controllers
 
             
             var moviesVm = _mapper.Map<IEnumerable<MovieViewModel>>(movies).ToList();
+            foreach (var item in moviesVm)
+            {
+                var movie = moviesFromDb.FirstOrDefault(i => i.TmdbID == item.ID);
+                item.ID = movie.ID;
+                item.TmdbID = movie.TmdbID;
+                item.Rate = movie.UserRates?.FirstOrDefault(i => i.UserId == int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))?.Rate;
+            }
 
             return PartialView("_MovieCard", moviesVm);
         }
@@ -87,6 +101,21 @@ namespace MoviesRecommender.Controllers
             var moviesVm = _mapper.Map<IEnumerable<MovieViewModel>>(movies);
 
             return PartialView("_MovieCard", moviesVm);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RateMovie(int userId, int movieId, float rate)
+        {
+            try
+            {
+                _moviesService.RateMovie(userId, movieId, rate);
+                return Json("success");
+            }
+            catch(Exception ex)
+            {
+                return Json("fail");
+            }
+            
         }
 
 

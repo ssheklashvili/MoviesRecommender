@@ -67,13 +67,44 @@ namespace MovieRecommender.Infrastructure.Repositories
         {
             Random r = new Random();
             int rInt = r.Next(0, 9000);
-            var movies = _context.Movies.Skip(rInt).Take(20).ToList();
+            var movies = _context.Movies.Include(i => i.UserRates).Skip(rInt).Take(20).ToList();
             return movies;
         }
 
         public List<Movie> GetMoviesByName(string name)
         {
-            return _context.Movies.Where(i => i.Name.ToLower().Contains(name.ToLower())).ToList();
+            return _context.Movies.Include(i => i.UserRates).Where(i => i.Name.ToLower().Contains(name.ToLower())).ToList();
+        }
+
+        public void RateMovie(int userId, int movieId, float rate)
+        {
+            var userRate = new UserRate
+            {
+                MovieId = movieId,
+                UserId = userId,
+                IsCreate = true,
+                Rate = rate
+            };
+
+            _context.UserRates.Add(userRate);
+
+            _context.SaveChanges();
+        }
+
+        public void UpdateUserRate(int userId, int movieId, float rate)
+        {
+            var userRateDbModel = _context.UserRates.FirstOrDefault(i => i.UserId == userId && i.MovieId == movieId);
+
+            userRateDbModel.Rate = rate;
+            userRateDbModel.IsCreate = false;
+
+            _context.SaveChanges();
+        }
+
+        public UserRate GetUserRate(int userId, int movieId)
+        {
+            var userRateDbModel = _context.UserRates.FirstOrDefault(i => i.UserId == userId && i.MovieId == movieId);
+            return userRateDbModel;
         }
     }
 }

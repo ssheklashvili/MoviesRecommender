@@ -9,5 +9,6 @@ namespace MovieRecommender.Core.Interfaces.Services
     {
         public List<Movie> GetRandomMovies();
         List<Movie> GetMoviesByName(string name);
+        void RateMovie(int userId, int movieId, float rate);
     }
 }

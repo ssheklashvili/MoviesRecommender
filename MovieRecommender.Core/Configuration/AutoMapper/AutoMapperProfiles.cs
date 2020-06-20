@@ -11,8 +11,9 @@ namespace MovieRecommender.Core.Configuration.AutoMapper
     {
         public AutoMapperProfiles()
         {
-            CreateMap<MovieApiModel, MovieViewModel>(MemberList.None);
-            CreateMap<MovieViewModel, MovieApiModel>(MemberList.None);
+            CreateMap<MovieApiModel, MovieViewModel>(MemberList.None)
+                .ForMember(dest => dest.TmdbID, src => src.MapFrom(s => s.ID))
+                .ForMember(dest => dest.ID, src => src.Ignore());
         }
     }
 }

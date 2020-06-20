@@ -26,5 +26,18 @@ namespace MovieRecommender.Core.Services
         {
             return _movieRepository.GetMoviesByName(name);
         }
+
+        public void RateMovie(int userId, int movieId, float rate)
+        {
+            var moviefromDb = _movieRepository.GetUserRate(userId, movieId);
+            if(moviefromDb != null)
+            {
+                _movieRepository.UpdateUserRate(userId, movieId, rate);
+            }
+            else
+            {
+                _movieRepository.RateMovie(userId, movieId, rate);
+            }
+        }
     }
 }

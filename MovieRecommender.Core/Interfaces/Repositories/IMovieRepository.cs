@@ -10,5 +10,8 @@ namespace MovieRecommender.Core.Interfaces.Repositories
         void ImportMovies();
         List<Movie> GetRandomMovies();
         List<Movie> GetMoviesByName(string name);
+        void RateMovie(int userId, int movieId, float rate);
+        void UpdateUserRate(int userId, int movieId, float rate);
+        UserRate GetUserRate(int userId, int movieId);
     }
 }
