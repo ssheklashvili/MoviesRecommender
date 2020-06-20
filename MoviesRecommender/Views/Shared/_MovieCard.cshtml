@@ -22,8 +22,9 @@
                         <div class="card-body">
                             <!--Title-->
                             <h4 class="card-title">@item.TiTle</h4>
-                            <div>
+                            <div class="card-rating">
                                 <form class="rating">
+                                    <input type="hidden" value="@item.ID" />
                                     <label>
                                         <input type="radio" name="stars" value="1" />
                                         <span class="icon">★</span>
@@ -55,10 +56,7 @@
                                         <span class="icon">★</span>
                                     </label>
                                 </form>
-                                @if (item.Rate != null)
-                                {
-                                    <span>@item.Rate</span>
-                                }
+                                 <span class="rate" style="margin-left: 5px; font-size: 12px; font-family: Helvetica">@item.Rate</span>
 
                             </div>
 

@@ -76,9 +76,8 @@ namespace MoviesRecommender.Controllers
             var moviesVm = _mapper.Map<IEnumerable<MovieViewModel>>(movies).ToList();
             foreach (var item in moviesVm)
             {
-                var movie = moviesFromDb.FirstOrDefault(i => i.TmdbID == item.ID);
+                var movie = moviesFromDb.FirstOrDefault(i => i.TmdbID == item.TmdbID);
                 item.ID = movie.ID;
-                item.TmdbID = movie.TmdbID;
                 item.Rate = movie.UserRates?.FirstOrDefault(i => i.UserId == int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))?.Rate;
             }
 
@@ -104,10 +103,11 @@ namespace MoviesRecommender.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> RateMovie(int userId, int movieId, float rate)
+        public async Task<IActionResult> RateMovie(int movieId, float rate)
         {
             try
             {
+                var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
                 _moviesService.RateMovie(userId, movieId, rate);
                 return Json("success");
             }

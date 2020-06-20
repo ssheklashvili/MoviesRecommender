@@ -34,3 +34,20 @@ function getRecommendation(userId) {
         }
     });
 };
+
+$(':radio').change(function () {
+    var form = $(this).closest('form');
+    var movieId = form.find('*').filter(':input:hidden:first').val();
+    var rate = $(this).val();
+    $.ajax({
+        url: "/Home/RateMovie",
+        method: "POST",
+        global: false,
+        contentType: 'application/x-www-form-urlencoded',
+        data: { movieId: movieId, rate: rate },
+        success: function (response) {
+            var ratingBody = form.closest('.card-rating');
+            var ratingSpan = ratingBody.find('.rate').text(rate);
+        }
+    });
+});
