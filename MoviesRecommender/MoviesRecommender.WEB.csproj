@@ -20,6 +20,7 @@
   <ItemGroup>
     <Folder Include="Utils\" />
     <Folder Include="wwwroot\mdb\" />
+    <Folder Include="wwwroot\fonts\" />
   </ItemGroup>
 
 </Project>

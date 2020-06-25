@@ -3,14 +3,14 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - MoviesRecommender</title>
+    <title>@ViewData["Title"] - ფილმების სარეკომენდაციო სისტემა</title>
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <link href="~/mdb/css/bootstrap.min.css" rel="stylesheet">
     <link href="~/mdb/css/mdb.min.css" rel="stylesheet">
-    <link href="~/mdb/css/style.css" rel="stylesheet">
-    <link href="~/css/site.css" rel="stylesheet" />
     <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
     <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/mdb/css/style.css" rel="stylesheet">
+    <link href="~/css/site.css" rel="stylesheet" />
     @RenderSection("Styles", required: false)
 </head>
 <body>
@@ -19,27 +19,18 @@
     {
         <partial name="_Header" />
     }
-
-    <div class="container">
-        <main role="main" class="pb-3">
-            <div id="loading" style="text-align:center; display: none; margin-top: 10px;"><img src="~/images/loading-image.gif" alt="" /></div>
-            <div class="container" id="pageWrapper">
-                @RenderBody()
-            </div>
-        </main>
-    </div>
+    @RenderBody()
 
     @if (User.Identity.IsAuthenticated)
     {
         <partial name="_Footer" />
     }
-
-
     <script type="text/javascript" src="~/mdb/js/jquery.min.js"></script>
     <script type="text/javascript" src="~/mdb/js/popper.min.js"></script>
     <script type="text/javascript" src="~/mdb/js/mdb.min.js"></script>
     <script type="text/javascript" src="~/js/jquery-3.5.1.min.js" asp-append-version="true"></script>
-    <script type="text/javascript" src="~/mdb/js/bootstrap.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @*<script type="text/javascript" src="~/mdb/js/bootstrap.min.js"></script>*@
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
 </body>

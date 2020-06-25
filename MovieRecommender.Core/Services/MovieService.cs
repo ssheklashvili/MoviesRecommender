@@ -22,6 +22,11 @@ namespace MovieRecommender.Core.Services
             return _movieRepository.GetRandomMovies();
         }
 
+        public IEnumerable<Movie> GetMovies(string name, int? page)
+        {
+            return _movieRepository.GetMovies(name, page);
+        }
+
         public List<Movie> GetMoviesByName(string name)
         {
             return _movieRepository.GetMoviesByName(name);

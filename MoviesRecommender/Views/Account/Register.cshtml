@@ -1,100 +1,77 @@
 ﻿@model MoviesRecommender.WEB.ViewModels.RegisterViewModel
-
-@section Styles{
-    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
-
+@{
+    ViewData["Title"] = "რეგისტრაცია";
 }
-<!-- Material form register -->
-<div class="card mt-3">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 
-    <h5 class="card-header info-color white-text text-center py-4">
-        <strong>Sign up</strong>
-    </h5>
+<div class="account-background">
+    <div class="account-background-mirror">
+        <div class="container">
+            <div class="account-card card mt-3">
+                <h5 class="card-header info-color white-text text-center py-4">
+                    <strong class="font-upper">რეგისტრაცია</strong>
+                </h5>
+                <div class="card-body px-lg-5 pt-0">
+                    <form class="text-center" style="color: #757575;" asp-action="Register" method="post">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <div class="form-row">
+                            <div class="col">
+                                <div class="md-form">
+                                    <input asp-for="FirstName" type="text" id="materialRegisterFormFirstName" class="form-control" required>
+                                    <label class="font-upper" for="materialRegisterFormFirstName">სახელი</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="md-form">
+                                    <input asp-for="LastName" type="text" id="materialRegisterFormLastName" class="form-control" required>
+                                    <label class="font-upper" for="materialRegisterFormLastName">გვარი</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="md-form mt-0">
+                            <input asp-for="Email" type="email" id="materialRegisterFormEmail" class="form-control" required>
+                            <label class="font-upper" for="materialRegisterFormEmail">ელ.ფოსტა</label>
+                        </div>
+                        <div class="md-form">
+                            <input asp-for="Password" type="password" id="materialRegisterFormPassword" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock" required>
+                            <label class="font-upper" for="materialRegisterFormPassword">პაროლი</label>
+                        </div>
+                        <div class="form-group row">
+                            <label for="materialRegisterFormEmail" class="col-sm-4 col-form-label font-upper">საყვარელი მსახიობი(ები)</label>
+                            <div class="col-sm-8">
+                                <select multiple="multiple" class="selectpicker" data-live-search="true" title="აირჩიეთ მსახიობი(ები)" id="Artist"
+                                        asp-for="@Model.ArtistIds" asp-items="Model.Artists"></select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="materialRegisterFormEmail" class="col-sm-4 col-form-label font-upper">საყვარელი რეჟისორი(ები)</label>
+                            <div class="col-sm-8">
+                                <select multiple="multiple" class="selectpicker" data-live-search="true"  title="აირჩიეთ რეჟისორი(ები)" id="Director"
+                                        asp-for="@Model.DirectorIds" asp-items="Model.Directors"></select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="materialRegisterFormEmail" class="col-sm-4 col-form-label font-upper">საყვარელი ჟანრი(ები)</label>
+                            <div class="col-sm-8">
+                                <select multiple="multiple" class="selectpicker" data-live-search="true" title="აირჩიეთ ჟანრი(ები)" id="Genre"
+                                        asp-for="@Model.GenreIds" asp-items="Model.Genres"></select>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0 font-upper" type="submit">რეგისტრაცია</button>
+                        <p class="font-lower">
+                            თუ უკვე ხართ მონაწილე? გაიარე
+                            <a asp-controller="Account" asp-action="Login"> ავტორიზაცია</a>
+                        </p>
 
-    <!--Card content-->
-    <div class="card-body px-lg-5 pt-0">
+                    </form>
 
-        <!-- Form -->
-        <form class="text-center" style="color: #757575;" asp-action="Register" method="post">
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-row">
-                <div class="col">
-                    <!-- First name -->
-                    <div class="md-form">
-                        <input asp-for="FirstName" type="text" id="materialRegisterFormFirstName" class="form-control" required>
-                        <label for="materialRegisterFormFirstName">First name</label>
-                    </div>
-                </div>
-                <div class="col">
-                    <!-- Last name -->
-                    <div class="md-form">
-                        <input asp-for="LastName" type="text" id="materialRegisterFormLastName" class="form-control" required>
-                        <label for="materialRegisterFormLastName">Last name</label>
-                    </div>
-                </div>
-            </div>
-
-            <!-- E-mail -->
-            <div class="md-form mt-0">
-                <input asp-for="Email" type="email" id="materialRegisterFormEmail" class="form-control" required>
-                <label for="materialRegisterFormEmail">E-mail</label>
-            </div>
-
-            <!-- Password -->
-            <div class="md-form">
-                <input asp-for="Password" type="password" id="materialRegisterFormPassword" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock" required>
-                <label for="materialRegisterFormPassword">Password</label>
-            </div>
-
-            <div class="form-group row">
-                <label for="materialRegisterFormEmail" class="col-sm-4 col-form-label">Favourite Artists</label>
-                <div class="col-sm-8">
-                    <select multiple="multiple" class="selectpicker" data-live-search="true" id="Artist"
-                            asp-for="@Model.ArtistIds" asp-items="Model.Artists"></select>
-                </div>
-
-            </div>
-
-            <div class="form-group row">
-                <label for="materialRegisterFormEmail" class="col-sm-4 col-form-label">Favourite Directors</label>
-                <div class="col-sm-8">
-                    <select multiple="multiple" class="selectpicker" data-live-search="true" id="Director"
-                            asp-for="@Model.DirectorIds" asp-items="Model.Directors"></select>
-                </div>
-
-            </div>
-
-            <div class="form-group row">
-                <label for="materialRegisterFormEmail" class="col-sm-4 col-form-label">Favourite Genres</label>
-                <div class="col-sm-8">
-                    <select multiple="multiple" class="selectpicker" data-live-search="true" id="Genre"
-                            asp-for="@Model.GenreIds" asp-items="Model.Genres"></select>
                 </div>
 
             </div>
-
-
-            <!-- Sign up button -->
-            <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Sign in</button>
-
-            <!-- Terms of service -->
-            <p>
-                By clicking
-                <em>Sign up</em> you agree to our
-                <a href="" target="_blank">terms of service</a>
-
-        </form>
-        <!-- Form -->
-
+        </div>
     </div>
-
 </div>
-<!-- Material form register -->
-@section Scripts{
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
-}
+            <!-- Material form register -->
+            @section Scripts{
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+            }

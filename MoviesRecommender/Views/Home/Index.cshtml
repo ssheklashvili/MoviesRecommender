@@ -1,4 +1,43 @@
-﻿@model List<MovieRecommender.Core.Models.AppModels.MovieViewModel>
+﻿@{
+    ViewData["Title"] = "ფილმები";
+}
+<div id="movieContainer" class="container">
+    <div class="row mt-4" id="movie_card_view">
+    </div>
+    <button class="btn btn-blue show-more-button font-upper" data-page="1" data-name="" id="show_more">აჩვენე მეტი</button>
+</div>
 
 
-<partial name="_MovieCard" model="Model" />
+@section Scripts{ 
+    <script>
+        var movieUrl = "@Url.Action("GetMovies","Home")";
+
+        $(document).ready(function () {
+            $("#show_more").hide();
+            startLoading()
+            $.get(movieUrl, { page: 1 }, function (responses) {
+                $("#movie_card_view").append(responses);
+                stopLoading();
+                $("#show_more").show();
+            });
+
+            $(document).on("click", "#show_more", function () {
+                startLoading();
+                var _this = $(this);
+                $(_this).prop("disabled", true);
+                var page = parseInt($(this).data("page"));
+                var name = $(_this).data("name");
+                page = page + 1;
+                $(_this).data("page", page);
+                 $.get(movieUrl, { page: page, name:name }, function (responses) {
+                    $("#movie_card_view").append(responses);
+                     stopLoading();
+                        $(_this).prop("disabled", false);
+                });
+
+            });
+        });
+
+       
+    </script>
+}

@@ -36,19 +36,26 @@ namespace MoviesRecommender.Controllers
             _mapper = mapper;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var movies = new List<MovieApiModel>();
-            var moviesFromDb = _moviesService.GetRandomMovies();
+            return View();
+        }
 
-            foreach(var movie in moviesFromDb)
+
+        public async Task<IActionResult> GetMovies(string name, int? page)
+        {
+            var moviesFromDb = _moviesService.GetMovies(name,page);
+
+            var movies = new List<MovieApiModel>();
+
+            foreach (var movie in moviesFromDb)
             {
                 var apiMovie = await _tmdbWebService.SearchMovieById(movie.TmdbID);
                 if (apiMovie != null)
                     movies.Add(apiMovie);
+
             }
-            
-            var moviesVm = _mapper.Map<IEnumerable<MovieViewModel>>(movies);
+            var moviesVm = _mapper.Map<IEnumerable<MovieViewModel>>(movies).ToList();
             foreach (var item in moviesVm)
             {
                 var movie = moviesFromDb.FirstOrDefault(i => i.TmdbID == item.TmdbID);
@@ -56,7 +63,7 @@ namespace MoviesRecommender.Controllers
                 item.Rate = movie.UserRates?.FirstOrDefault(i => i.UserId == int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))?.Rate;
             }
 
-            return View(moviesVm);
+            return PartialView("_MovieCard", moviesVm);
         }
 
         public async Task<IActionResult> SearchMovie(string name)

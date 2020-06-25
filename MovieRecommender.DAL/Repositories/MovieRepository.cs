@@ -71,6 +71,19 @@ namespace MovieRecommender.Infrastructure.Repositories
             return movies;
         }
 
+        public IEnumerable<Movie> GetMovies(string name, int? page)
+        {
+            var movies = _context.Movies.Include(i => i.UserRates).AsQueryable();
+            if(!string.IsNullOrEmpty(name))
+            {
+                movies = movies.Where(x => x.Name.ToLower().Contains(name.ToLower()));
+            }
+            movies = movies.Skip(page.HasValue ? (page.Value - 1) * 12 : 0).Take(12);
+            return movies;
+        }
+
+
+
         public List<Movie> GetMoviesByName(string name)
         {
             return _context.Movies.Include(i => i.UserRates).Where(i => i.Name.ToLower().Contains(name.ToLower())).ToList();

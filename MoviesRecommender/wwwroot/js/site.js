@@ -1,28 +1,22 @@
-﻿$(document).ajaxStart(function () {
-    $("#loading").show();
-    $("#pageWrapper").hide();
-});
-
-$(document).ajaxStop(function () {
-    $("#loading").hide();
-    $("#pageWrapper").show();
-});
-
-function searchMovie() {
+﻿
+$("#searchForm").on("submit", function (e) {
+    e.preventDefault();
     var searchValue = $("#search").val();
     if (searchValue.length < 3)
         return;
-    $.ajax({
-        url: "/Home/SearchMovie",
-        method: "GET",
-        contentType: "application/json",
-        data: { name: searchValue },
-        success: function (response) {
-            $("#pageWrapper").html(response);
-        }
+    $("#show_more").hide();
+    $("#movie_card_view").html("");
+    startLoading();
+    $("#show_more").data("page", 1);
+    $("#show_more").data("name", searchValue);
+    $.get("/Home/GetMovies", { page: 1, name: searchValue }, function (responses) {
+        $("#movie_card_view").append(responses);
+        stopLoading();
+        $("#show_more").show();
     });
-};
 
+
+});
 function getRecommendation(userId) {
     $.ajax({
         url: "/Home/GetRecommendation",
@@ -35,7 +29,7 @@ function getRecommendation(userId) {
     });
 };
 
-$(':radio').change(function () {
+$(document).on("change",':radio',function () {
     var form = $(this).closest('form');
     var movieId = form.find('*').filter(':input:hidden:first').val();
     var rate = $(this).val();
@@ -51,3 +45,15 @@ $(':radio').change(function () {
         }
     });
 });
+
+
+
+//added by oleg
+//ლოადერი გავიტანე css ში.
+//დიზაინში ცვლილებისთვის ლეიაუთში კონტეინერი რომ იყო ის არ მაწყობდა და იმას მივაყოლე ლოადერიც
+function startLoading() {
+    $("body").append("<div class='lds-spinner'><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>");
+}
+function stopLoading() {
+    $("body").find(".lds-spinner").remove();
+}

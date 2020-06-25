@@ -1,72 +1,54 @@
 ﻿@model List<MovieRecommender.Core.Models.AppModels.MovieViewModel>
-
-    <div id="movieContainer" class="container">
-        <div class="row row-cols-1 row-cols-md-5 mt-5 mb-5">
-            @foreach (var item in Model)
-            {
-                var imagePath = "http://image.tmdb.org/t/p/w185/" + item.PosterPath;
-                <div class="col  mb-4"  style="height: 450px;">
-                    <!-- Card -->
-                    <div class="card h-100 m-lg-5" style="width: 200px;" >
-
-                        <!--Card image-->
-                        <div class="view overlay">
-                            <img class="card-img-top" src="@imagePath"
-                                 alt="Card image cap">
-                            <a href="#!">
-                                <div class="mask rgba-white-slight"></div>
-                            </a>
-                        </div>
-
-                        <!--Card content-->
-                        <div class="card-body">
-                            <!--Title-->
-                            <h4 class="card-title">@item.TiTle</h4>
-                            <div class="card-rating">
-                                <form class="rating">
-                                    <input type="hidden" value="@item.ID" />
-                                    <label>
-                                        <input type="radio" name="stars" value="1" />
-                                        <span class="icon">★</span>
-                                    </label>
-                                    <label>
-                                        <input type="radio" name="stars" value="2" />
-                                        <span class="icon">★</span>
-                                        <span class="icon">★</span>
-                                    </label>
-                                    <label>
-                                        <input type="radio" name="stars" value="3" />
-                                        <span class="icon">★</span>
-                                        <span class="icon">★</span>
-                                        <span class="icon">★</span>
-                                    </label>
-                                    <label>
-                                        <input type="radio" name="stars" value="4" />
-                                        <span class="icon">★</span>
-                                        <span class="icon">★</span>
-                                        <span class="icon">★</span>
-                                        <span class="icon">★</span>
-                                    </label>
-                                    <label>
-                                        <input type="radio" name="stars" value="5" />
-                                        <span class="icon">★</span>
-                                        <span class="icon">★</span>
-                                        <span class="icon">★</span>
-                                        <span class="icon">★</span>
-                                        <span class="icon">★</span>
-                                    </label>
-                                </form>
-                                 <span class="rate" style="margin-left: 5px; font-size: 12px; font-family: Helvetica">@item.Rate</span>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <!-- Card -->
+@foreach (var item in Model)
+{
+    var imagePath = "http://image.tmdb.org/t/p/w185/" + item.PosterPath;
+    <div class="col-3 mb-3 movie-card-item">
+        <div class="card h-100">
+            <div class="view overlay">
+                <img class="card-img-top" src="@imagePath"
+                        alt="Card image cap">
+                <a href="#!">
+                    <div class="mask rgba-white-slight"></div>
+                </a>
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">@item.TiTle</h4>
+                <div class="card-rating">
+                    <form class="rating">
+                        <input type="hidden" value="@item.ID" />
+                        <label>
+                            <input type="radio" name="stars" @(item.Rate == 1 ? "checked" : "") value="1" />
+                            <span class="icon">★</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="stars" @(item.Rate == 2 ? "checked" : "") value="2" />
+                            <span class="icon">★</span>
+                            <span class="icon">★</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="stars" @(item.Rate == 3 ? "checked" : "") value="3" />
+                            <span class="icon">★</span>
+                            <span class="icon">★</span>
+                            <span class="icon">★</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="stars" @(item.Rate == 4 ? "checked" : "") value="4" />
+                            <span class="icon">★</span>
+                            <span class="icon">★</span>
+                            <span class="icon">★</span>
+                            <span class="icon">★</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="stars" @(item.Rate == 5 ? "checked" : "") value="5" />
+                            <span class="icon">★</span>
+                            <span class="icon">★</span>
+                            <span class="icon">★</span>
+                            <span class="icon">★</span>
+                            <span class="icon">★</span>
+                        </label>
+                    </form>
                 </div>
-
-            }
+            </div>
         </div>
     </div>
-
+}
