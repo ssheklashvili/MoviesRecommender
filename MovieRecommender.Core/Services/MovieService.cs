@@ -2,9 +2,11 @@
 using MovieRecommender.Core.Interfaces.Repositories;
 using MovieRecommender.Core.Interfaces.Services;
 using MovieRecommender.Core.Models;
+using MovieRecommender.Core.Models.AppModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace MovieRecommender.Core.Services
@@ -22,9 +24,9 @@ namespace MovieRecommender.Core.Services
             return _movieRepository.GetRandomMovies();
         }
 
-        public IEnumerable<Movie> GetMovies(string name, int? page)
+        public IEnumerable<Movie> GetMovies(string name, int? page, int? userId)
         {
-            return _movieRepository.GetMovies(name, page);
+            return _movieRepository.GetMovies(name, page, userId);
         }
 
         public List<Movie> GetMoviesByName(string name)

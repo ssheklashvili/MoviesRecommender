@@ -11,6 +11,6 @@ namespace MovieRecommender.Core.Interfaces.Services
         List<Movie> GetMoviesByName(string name);
         void RateMovie(int userId, int movieId, float rate);
 
-        IEnumerable<Movie> GetMovies(string name, int? page);
+        IEnumerable<Movie> GetMovies(string name, int? page, int? userId);
     }
 }

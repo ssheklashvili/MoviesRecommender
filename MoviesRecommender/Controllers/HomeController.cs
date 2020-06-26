@@ -41,9 +41,9 @@ namespace MoviesRecommender.Controllers
             return View();
         }
 
-        public async Task<IActionResult> GetMovies(string name, int? page)
+        public async Task<IActionResult> GetMovies(string name, int? page, int? userId = null)
         {
-            var moviesFromDb = _moviesService.GetMovies(name,page);
+            var moviesFromDb = _moviesService.GetMovies(name, page, userId);
 
             var movies = new List<MovieApiModel>();
 

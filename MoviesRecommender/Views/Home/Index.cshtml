@@ -4,7 +4,7 @@
 <div id="movieContainer" class="container">
     <div class="row mt-4" id="movie_card_view">
     </div>
-    <button class="btn btn-blue show-more-button font-upper" data-page="1" data-name="" id="show_more">აჩვენე მეტი</button>
+    <button class="btn btn-blue show-more-button font-upper" data-page="1" data-name="" data-userId="" id="show_more">აჩვენე მეტი</button>
 </div>
 
 
@@ -27,9 +27,10 @@
                 $(_this).prop("disabled", true);
                 var page = parseInt($(this).data("page"));
                 var name = $(_this).data("name");
+                var userId = parseInt($(this).data("userId"))
                 page = page + 1;
                 $(_this).data("page", page);
-                 $.get(movieUrl, { page: page, name:name }, function (responses) {
+                $.get(movieUrl, { page: page, name: name, userId: userId }, function (responses) {
                     $("#movie_card_view").append(responses);
                      stopLoading();
                         $(_this).prop("disabled", false);

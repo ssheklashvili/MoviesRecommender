@@ -9,7 +9,8 @@ $("#searchForm").on("submit", function (e) {
     startLoading();
     $("#show_more").data("page", 1);
     $("#show_more").data("name", searchValue);
-    $.get("/Home/GetMovies", { page: 1, name: searchValue }, function (responses) {
+    $("#show_more").data("userId", null);
+    $.get("/Home/GetMovies", { page: 1, name: searchValue}, function (responses) {
         $("#movie_card_view").append(responses);
         stopLoading();
         $("#show_more").show();
@@ -24,8 +25,23 @@ function getRecommendation(userId) {
         contentType: "application/json",
         data: { userId: userId },
         success: function (response) {
-            $("#pageWrapper").html(response);
+            $("#movie_card_view").html(response);
         }
+    });
+};
+
+function getUserRatedMovies(userId) {
+    $("#show_more").hide();
+    $("#movie_card_view").html("");
+    startLoading();
+    $("#show_more").data("page", 1);
+    $("#show_more").data("name", "");
+    $("#show_more").data("userId", userId);
+
+    $.get("/Home/GetMovies", { name: "", page: 1, userId: userId }, function (responses) {
+        $("#movie_card_view").append(responses);
+        stopLoading();
+        $("#show_more").show();
     });
 };
 

@@ -71,18 +71,20 @@ namespace MovieRecommender.Infrastructure.Repositories
             return movies;
         }
 
-        public IEnumerable<Movie> GetMovies(string name, int? page)
+        public IEnumerable<Movie> GetMovies(string name, int? page, int? userId)
         {
             var movies = _context.Movies.Include(i => i.UserRates).AsQueryable();
             if(!string.IsNullOrEmpty(name))
             {
                 movies = movies.Where(x => x.Name.ToLower().Contains(name.ToLower()));
             }
+            if(userId != null)
+            {
+                movies = movies.Where(x => x.UserRates.Any(i => i.UserId == userId));
+            }
             movies = movies.Skip(page.HasValue ? (page.Value - 1) * 12 : 0).Take(12);
             return movies;
         }
-
-
 
         public List<Movie> GetMoviesByName(string name)
         {
@@ -119,5 +121,6 @@ namespace MovieRecommender.Infrastructure.Repositories
             var userRateDbModel = _context.UserRates.FirstOrDefault(i => i.UserId == userId && i.MovieId == movieId);
             return userRateDbModel;
         }
+
     }
 }
