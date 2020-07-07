@@ -1,4 +1,5 @@
 ﻿using MovieRecommender.Core.Models;
+using MovieRecommender.Core.Models.ApiModels;
 using MovieRecommender.Core.Models.AppModels;
 using System;
 using System.Collections.Generic;
@@ -13,5 +14,7 @@ namespace MovieRecommender.Core.Interfaces.Services
         void RegisterUser(UserRegisterModel model);
         ProfileViewModel GetUserProfile(int userId);
         bool UserExists(string email);
+        UserProfileModel GetUserProfileData(int userId);
+        UserRatesModel GetUserRates(int userId);
     }
 }

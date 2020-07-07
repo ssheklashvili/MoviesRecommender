@@ -1,6 +1,8 @@
-﻿using MovieRecommender.Core.Interfaces.Repositories;
+﻿using AutoMapper;
+using MovieRecommender.Core.Interfaces.Repositories;
 using MovieRecommender.Core.Interfaces.Services;
 using MovieRecommender.Core.Models;
+using MovieRecommender.Core.Models.ApiModels;
 using MovieRecommender.Core.Models.AppModels;
 using System;
 using System.Collections.Generic;
@@ -13,9 +15,11 @@ namespace MovieRecommender.Core.Services
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
+        private readonly IMapper _mapper;
 
-        public UserService(IUserRepository userRepository)
+        public UserService(IUserRepository userRepository, IMapper mapper)
         {
+            _mapper = mapper;
             _userRepository = userRepository;
         }
         
@@ -30,6 +34,20 @@ namespace MovieRecommender.Core.Services
             var user = _userRepository.GetUser(email);
             if (user == null) return false;
             return true;
+        }
+
+
+        public UserProfileModel GetUserProfileData(int userId)
+        {
+            var user = _userRepository.GetUserProfile(userId);
+            return _mapper.Map<UserProfileModel>(user);
+        }
+
+
+        public UserRatesModel GetUserRates(int userId)
+        {
+            var user = _userRepository.GetUserWithRates(userId);
+            return _mapper.Map<UserRatesModel>(user);
         }
 
         public User GetUser(string email, string password)

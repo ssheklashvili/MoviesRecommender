@@ -14,5 +14,7 @@ namespace MovieRecommender.Core.Interfaces.Repositories
         void RateMovie(int userId, int movieId, float rate);
         void UpdateUserRate(int userId, int movieId, float rate);
         UserRate GetUserRate(int userId, int movieId);
+        IEnumerable<Movie> GetMoviesByIds(List<int> movieIds);
+        int[] GetOrderedMovieIds();
     }
 }

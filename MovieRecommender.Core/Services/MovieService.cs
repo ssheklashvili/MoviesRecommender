@@ -32,8 +32,17 @@ namespace MovieRecommender.Core.Services
         public List<Movie> GetMoviesByName(string name)
         {
             return _movieRepository.GetMoviesByName(name);
+        } 
+
+        public int[] GetOrderedMovieIds()
+        {
+            return _movieRepository.GetOrderedMovieIds();
         }
 
+        public IEnumerable<Movie> GetMoviesByIds(List<int> MovieIds)
+        {
+            return _movieRepository.GetMoviesByIds(MovieIds);
+        }
         public void RateMovie(int userId, int movieId, float rate)
         {
             var moviefromDb = _movieRepository.GetUserRate(userId, movieId);

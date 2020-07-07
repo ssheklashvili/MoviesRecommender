@@ -28,6 +28,14 @@ namespace MovieRecommender.Infrastructure.Repositories
             var user = _context.Users.Where(u => u.Email == email).SingleOrDefault();
             return user;
         }
+
+        public User GetUserWithRates(int userId)
+        {
+            var user = _context.Users.Where(x => x.ID == userId).Include(x => x.UserRates).FirstOrDefault();
+            return user;
+
+        }
+
         public User SaveUser(string firsName, string lastName, string email, string password)
         {
             var user = new User

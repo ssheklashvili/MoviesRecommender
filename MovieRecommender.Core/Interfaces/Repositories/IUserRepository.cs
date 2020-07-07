@@ -13,5 +13,7 @@ namespace MovieRecommender.Core.Interfaces.Repositories
         void SaveUserFavourites<T>(ICollection<T> entities) where T : class;
 
         User GetUserProfile(int userId);
+
+        User GetUserWithRates(int userId);
     }
 }

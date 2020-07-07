@@ -122,5 +122,17 @@ namespace MovieRecommender.Infrastructure.Repositories
             return userRateDbModel;
         }
 
+
+        public IEnumerable<Movie> GetMoviesByIds(List<int> movieIds)
+        {
+            return _context.Movies.Where(x => movieIds.Contains(x.ID));
+        }
+
+
+        public int[] GetOrderedMovieIds()
+        {
+            return _context.Movies.OrderBy(x => x.ID).Select(x => x.ID).ToArray();
+        }
+
     }
 }

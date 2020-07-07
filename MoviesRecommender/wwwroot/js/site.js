@@ -30,6 +30,35 @@ function getRecommendation(userId) {
     });
 };
 
+function GetRecomendationWithProfile(userId) {
+    startLoading();
+    $.ajax({
+        url: "/Home/GetRecommendationWithProfile",
+        method: "GET",
+        contentType: "application/json",
+        data: { userId: userId },
+        success: function (response) {
+            $("#movie_card_view").html(response);
+            stopLoading();
+        }
+    });
+};
+
+function getRecommendationWithoutProfile(userId) {
+    startLoading();
+    $.ajax({
+        url: "/Home/GetRecommendationWithoutProfile",
+        method: "GET",
+        contentType: "application/json",
+        data: { userId: userId },
+        success: function (response) {
+            $("#movie_card_view").html(response);
+            stopLoading();
+        }
+    });
+};
+
+
 function getUserRatedMovies(userId) {
     $("#show_more").hide();
     $("#movie_card_view").html("");

@@ -25,7 +25,8 @@
                             <a class="dropdown-item" asp-controller="Account"
                                asp-action="Profile" asp-route-id="@userId">პროფილი</a>
                             <a class="dropdown-item" onclick="getUserRatedMovies(@userId)">შეფასებული ფილმები</a>
-                            <a class="dropdown-item" onclick="getRecommendation(@userId)">რეკომენდაციის მიღება</a>
+                            <a class="dropdown-item" onclick="getRecommendationWithoutProfile(@userId)">რეკომენდაციის მიღება(კოსინუსის მსგავსება)</a>
+                            <a class="dropdown-item" onclick="GetRecomendationWithProfile(@userId)">რეკომენდაციის მიღება(პროფილი + OWA)</a>
                             <a class="dropdown-item" asp-controller="Account" asp-action="LogOut">გასვლა</a>
                         </div>
                     </li>
