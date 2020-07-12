@@ -92,7 +92,7 @@ namespace MoviesRecommender.WEB.Controllers
             if (!string.IsNullOrWhiteSpace(model.Email))
             {
                 if (_userService.UserExists(model.Email))
-                    ModelState.AddModelError(string.Empty, "User already exists!");
+                    ModelState.AddModelError(string.Empty, "მომხამრებელი ამ ელ.ფოსტით უკვე არსებობს!");
             }
 
             if (ModelState.IsValid)

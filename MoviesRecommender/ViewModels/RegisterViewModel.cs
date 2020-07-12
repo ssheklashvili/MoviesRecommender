@@ -26,13 +26,13 @@ namespace MoviesRecommender.WEB.ViewModels
         public IEnumerable<SelectListItem> Artists { get; set; }
         public IEnumerable<SelectListItem> Directors { get; set; }
 
-        [MultiselectRequired(ErrorMessage = "Choose Favourite Genres")]
+        [MultiselectRequired(ErrorMessage = "აირჩიეთ საყვარელი ჟანრები")]
         public List<int> GenreIds { get; set; }
 
-        [MultiselectRequired(ErrorMessage = "Choose Favourite Artists")]
+        [MultiselectRequired(ErrorMessage = "აირჩიეთ საყვარელი მსახიობები")]
         public List<int> ArtistIds { get; set; }
 
-        [MultiselectRequired(ErrorMessage = "Choose Favourite Directors")]
+        [MultiselectRequired(ErrorMessage = "აირჩიეთ საყვარელი რეჟისორები")]
         public List<int> DirectorIds { get; set; }
 
     }
