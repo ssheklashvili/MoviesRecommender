@@ -123,6 +123,13 @@ namespace MovieRecommender.Infrastructure.Repositories
         }
 
 
+        public List<int> GetRatedMovieIds(int userId)
+        {
+            return _context.UserRates.Where(x => x.UserId == userId).Select(x => x.MovieId).ToList();
+        }
+
+
+
         public IEnumerable<Movie> GetMoviesByIds(List<int> movieIds)
         {
             return _context.Movies.Where(x => movieIds.Contains(x.ID));

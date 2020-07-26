@@ -16,5 +16,7 @@ namespace MovieRecommender.Core.Interfaces.Repositories
         UserRate GetUserRate(int userId, int movieId);
         IEnumerable<Movie> GetMoviesByIds(List<int> movieIds);
         int[] GetOrderedMovieIds();
+
+        List<int> GetRatedMovieIds(int userId);
     }
 }

@@ -14,6 +14,7 @@ using Microsoft.Extensions.Hosting;
 using MovieRecommender.Core.Configuration.AutoMapper;
 using MovieRecommender.Core.Interfaces.Repositories;
 using MovieRecommender.Core.Interfaces.Services;
+using MovieRecommender.Core.Models.Entities;
 using MovieRecommender.Core.Services;
 using MovieRecommender.Infrastructure.Contexts;
 using MovieRecommender.Infrastructure.Repositories;
@@ -38,8 +39,10 @@ namespace MoviesRecommender
             services.AddScoped<IMovieRepository, MovieRepository>();
             services.AddScoped<IMoviesService, MovieService>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserRecomendationRepository, UserRecomendationRepository>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ITmdbWebService, TmdbWebService>();
+            services.AddScoped<IUserRecomendationService, UserRecomendationService>();
             services.AddControllersWithViews();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>

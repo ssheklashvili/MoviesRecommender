@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MovieRecommender.Core.Models;
+using MovieRecommender.Core.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -53,6 +54,17 @@ namespace MovieRecommender.Infrastructure.Contexts
                 .HasOne(sc => sc.Director)
                 .WithMany(s => s.UserDirectors)
                 .HasForeignKey(sc => sc.DirectorId);
+
+
+           modelBuilder.Entity<UserRecomendation>()
+                .HasMany(sc => sc.UserRecomendationMovies)
+                .WithOne(s => s.UserRecomendation)
+                .HasForeignKey(sc => sc.UserRecomendationId);
+
+            modelBuilder.Entity<Movie>()
+               .HasMany(sc => sc.UserRecomendations)
+               .WithOne(s => s.Movie)
+               .HasForeignKey(sc => sc.MovieId);
         }
 
         public DbSet<User> Users { get; set; }
@@ -62,6 +74,8 @@ namespace MovieRecommender.Infrastructure.Contexts
         public DbSet<UserDirector> UserDirectors { get; set; }
         public DbSet<UserGenre> UserGenres { get; set; }
         public DbSet<Dictionary> Dictionaries { get; set; }
+        public DbSet<UserRecomendation> UserRecomendations { get; set; }
+        public DbSet<UserRecomendationToMovie> UserRecomendationToMovies{ get; set; }
 
     }
 }

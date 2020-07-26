@@ -13,5 +13,6 @@ namespace MovieRecommender.Core.Interfaces.Services
         IEnumerable<Movie> GetMovies(string name, int? page, int? userId);
         IEnumerable<Movie> GetMoviesByIds(List<int> MovieIds);
         int[] GetOrderedMovieIds();
+        List<int> GetRatedMovieIds(int userId);
     }
 }

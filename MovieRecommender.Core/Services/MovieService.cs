@@ -55,5 +55,11 @@ namespace MovieRecommender.Core.Services
                 _movieRepository.RateMovie(userId, movieId, rate);
             }
         }
+
+
+        public List<int> GetRatedMovieIds(int userId)
+        {
+            return _movieRepository.GetRatedMovieIds(userId);
+        }
     }
 }

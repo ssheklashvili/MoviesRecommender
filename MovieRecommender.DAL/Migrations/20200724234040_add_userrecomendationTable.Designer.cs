@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MovieRecommender.Infrastructure.Contexts;
 
 namespace MovieRecommender.Infrastructure.Migrations
 {
     [DbContext(typeof(MoviesRecommenderContext))]
-    partial class MoviesRecommenderContextModelSnapshot : ModelSnapshot
+    [Migration("20200724234040_add_userrecomendationTable")]
+    partial class add_userrecomendationTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -44,6 +44,22 @@ function GetRecomendationWithProfile(userId) {
     });
 };
 
+
+function GetRecomendationWithTopsis(userId) {
+    startLoading();
+    $.ajax({
+        url: "/Home/GetRecommendationWithTopsis",
+        method: "GET",
+        contentType: "application/json",
+        data: { userId: userId },
+        success: function (response) {
+            $("#movie_card_view").html(response);
+            stopLoading();
+        }
+    });
+};
+
+
 function getRecommendationWithoutProfile(userId) {
     startLoading();
     $.ajax({

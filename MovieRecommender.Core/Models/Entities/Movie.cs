@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using MovieRecommender.Core.Models.Entities;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace MovieRecommender.Core.Models
@@ -11,5 +12,7 @@ namespace MovieRecommender.Core.Models
         public string Name { get; set; }
 
         public ICollection<UserRate> UserRates { get; set; }
+
+        public ICollection<UserRecomendationToMovie> UserRecomendations { get; set; }
     }
 }
